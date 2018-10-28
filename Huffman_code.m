@@ -42,8 +42,7 @@ alpha_raw = 0.02;
 theta_w = cell(1,10);
 % g_iter = zeros(10,100);
 
-for mm = 1:10
-    
+for mm = 1:10  
 %     data_org = data_class{mm};
 %     data_com = data_class{10};
 %     label = label_class{mm}; 
