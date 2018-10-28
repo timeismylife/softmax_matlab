@@ -51,8 +51,7 @@ for mm = 1:10
     d_w = code_stastic{mm};
     %p_w = 1+zeros(size(data,2),1);
 %     p_w_iter = zeros(1,1);
-%     p_w_iter_com = zeros(1,1);
-    
+%     p_w_iter_com = zeros(1,1);   
 %     p_w_iter = zeros(1,1);
     iter = 1;
     delta_l = 1e-3;
@@ -83,9 +82,9 @@ for mm = 1:10
 %                 f_org = sigmoid(z_org);% m*1 array
 %                 z_com = x_w_com'*theta_w{mm}(:,nn-1);
 %                 f_com = sigmoid(z_com);
-                %             e = e + theta_w{mm}(:,nn-1)*g';% 784*m matrix
+%             e = e + theta_w{mm}(:,nn-1)*g';% 784*m matrix
 %                 e = e + g*theta_w{mm}(:,nn-1);
-                %             theta_w{mm}(:,nn-1) = theta_w{mm}(:,nn-1) + x_w*g/count(mm);
+%             theta_w{mm}(:,nn-1) = theta_w{mm}(:,nn-1) + x_w*g/count(mm);
                 theta_w{mm}(:,nn-1) = theta_w{mm}(:,nn-1) + g*x_w;
                 cost = cost + (1-d_w(nn-1))*log(f) + d_w(nn-1)*log(1-f);
 %                 p_w = p_w.*((f_org.^(1-d_w(nn-1))).*((1-f_org).^d_w(nn-1)));
@@ -96,15 +95,12 @@ for mm = 1:10
             cost_iter = [cost_iter cost];
 %             p_w_iter = [p_w_iter p_w];
 %             p_w_iter_com = [p_w_iter_com p_w_com];
-            
-            %         g_iter(mm,iter) = sum(g)/count(mm);
-            
+%             g_iter(mm,iter) = sum(g)/count(mm);           
 %             p_sum = sum(p_w_iter)/num_feat;
 %             p_sum_com = sum(p_w_iter_com)/size(data_com,2);
 %             delta_p = p_sum(iter)-p_sum(iter-1);
-            %         data = data + e;
-%             delta_p = p_w_iter(iter)-p_w_iter(iter-1);
-            
+%             data = data + e;
+%             delta_p = p_w_iter(iter)-p_w_iter(iter-1);           
 %             data = data + repmat(e,1,num_feat); % 784*m
 %             data(:,index_data) = data(:,index_data) + e;
 %             if delta_p <= 0
@@ -114,8 +110,7 @@ for mm = 1:10
         iter = iter +1;
         delta_l = cost_iter(end) - cost_iter(end-1);
 %     end
-    end
-    
+    end   
 end
 toc
 %% STEP 4: Test the code
@@ -132,9 +127,7 @@ for mm = 1:10
         z = x_w'*theta_w{mm}(:,nn-1);% m*1 array
         f = sigmoid(z);% m*1 array
         p_w(:,mm) = p_w(:,mm).*((f.^(1-d_w(nn-1))).*((1-f).^d_w(nn-1)));
-    end
-    
-    
+    end 
 end
 [max_p,index]=max(p_w,[],2);
 index = index';
